@@ -45,8 +45,8 @@
   "scripts": {
     "clean": "rm -rf lib coverage",
     "build": "tsc",
+    "pretest": "npm run clean && npm run build",
     "test": "karma start",
-    "preversion": "npm run clean && npm run build && npm test",
-    "postversion": "git push && git push --tags"
+    "preversion": "npm run clean && npm run build"
   }
 }

@@ -1,1 +1,5 @@
-export * from './matchQueries';
+import matchQueries from './matchQueries';
+
+export {
+  matchQueries
+};
