@@ -1,6 +1,6 @@
 {
   "name": "container-query-toolkit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Basic utilities to work with container query.",
   "repository": {
     "type": "git",
