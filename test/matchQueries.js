@@ -145,4 +145,54 @@ describe('matchQueries', function () {
 
   });
 
+  describe('no height info', function () {
+
+    it('ignores rules of height', function () {
+      const query = {
+        a: {minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500},
+        b: {minWidth: 500, maxWidth: 600, minHeight: 400, maxHeight: 500},
+        c: {minWidth: 400, maxWidth: 500, minHeight: 500, maxHeight: 600},
+        d: {minWidth: 500, maxWidth: 600, minHeight: 500, maxHeight: 600},
+      };
+
+      const result1 = matchQueries(query)({width: 300});
+      expect(result1).toEqual({a: false, b: false, c: false, d: false});
+
+      const result2 = matchQueries(query)({width: 450});
+      expect(result2).toEqual({a: true, b: false, c: true, d: false});
+
+      const result5 = matchQueries(query)({width: 550});
+      expect(result5).toEqual({a: false, b: true, c: false, d: true});
+
+      const result6 = matchQueries(query)({width: 700});
+      expect(result6).toEqual({a: false, b: false, c: false, d: false});
+    });
+
+  });
+
+  describe('no width info', function () {
+
+    it('ignores rules of width', function () {
+      const query = {
+        a: {minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500},
+        b: {minWidth: 500, maxWidth: 600, minHeight: 400, maxHeight: 500},
+        c: {minWidth: 400, maxWidth: 500, minHeight: 500, maxHeight: 600},
+        d: {minWidth: 500, maxWidth: 600, minHeight: 500, maxHeight: 600},
+      };
+
+      const result1 = matchQueries(query)({height: 300});
+      expect(result1).toEqual({a: false, b: false, c: false, d: false});
+
+      const result2 = matchQueries(query)({height: 450});
+      expect(result2).toEqual({a: true, b: true, c: false, d: false});
+
+      const result3 = matchQueries(query)({height: 550});
+      expect(result3).toEqual({a: false, b: false, c: true, d: true});
+
+      const result6 = matchQueries(query)({height: 700});
+      expect(result6).toEqual({a: false, b: false, c: false, d: false});
+    });
+
+  });
+
 });
