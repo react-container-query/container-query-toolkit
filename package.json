@@ -19,11 +19,11 @@
     "lib"
   ],
   "dependencies": {
-    "element-resize-detector": "1.1.9",
-    "lodash": "4.16.4"
+    "element-resize-detector": "1.1.10",
+    "lodash": "4.17.4"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.37",
+    "@types/lodash": "4.14.54",
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
     "babel-plugin-__coverage__": "11.0.0",
@@ -39,7 +39,7 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "1.8.0",
-    "typescript": "2.0.3",
+    "typescript": "2.2.1",
     "webpack": "1.13.2"
   },
   "scripts": {
