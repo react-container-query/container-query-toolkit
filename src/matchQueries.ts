@@ -22,16 +22,22 @@ export default function matchQueries(rules: Rules) {
     className: className
   }));
 
-  return function ({height, width}: {height: number, width: number}) {
+  return function ({height, width}: {height?: number, width?: number}) {
     const classNameMap: {[key: string]: boolean} = {};
 
     for (const {className, minWidth, maxWidth, minHeight, maxHeight} of entries) {
-      classNameMap[className] = (
-        minWidth <= width &&
-        width <= maxWidth &&
-        minHeight <= height &&
-        height <= maxHeight
-      );
+      if (height != null && width != null) {
+        classNameMap[className] = (
+          minWidth <= width && width <= maxWidth &&
+          minHeight <= height && height <= maxHeight
+        );
+      } else if (height == null && width != null) {
+        classNameMap[className] = minWidth <= width && width <= maxWidth;
+      } else if (height != null && width == null) {
+        classNameMap[className] = minHeight <= height && height <= maxHeight;
+      } else {
+        classNameMap[className] = true;
+      }
     }
 
     return classNameMap;

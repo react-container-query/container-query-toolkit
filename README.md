@@ -43,6 +43,14 @@ expect(result5).toEqual({a: false, b: false, c: false, d: true});
 
 const result6 = matchQueries(query)({width: 700, height: 700});
 expect(result6).toEqual({a: false, b: false, c: false, d: false});
+
+// {min|max}Height would be ignored if height is not provided.
+const result7 = matchQueries(query)({width: 450});
+expect(result7).toEqual({a: true, b: false, c: true, d: false});
+
+// {min|max}Width would be ignored if width is not provided.
+const result8 = matchQueries(query)({height: 450});
+expect(result8).toEqual({a: true, b: true, c: false, d: false});
 ```
 
 ## API
@@ -50,4 +58,7 @@ expect(result6).toEqual({a: false, b: false, c: false, d: false});
 ### `matchQueries(rules)(contentSize)`
 
 - `rules: {[key: string]: {minWidth?: number, maxWidth?: number, minHeight?: number, maxHeight?: number}}`
-- `contentSize: {height: number, width: number}`
+
+- `contentSize: {height?: number, width?: number}`
+
+	If `contentSize` is missing `height` or `width`, `{min|max}Height` or `{min|max}Width` rules will be ignored respectively.
